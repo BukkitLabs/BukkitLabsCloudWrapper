@@ -8,6 +8,10 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/sonarlint/
+.idea/encodings.xml
+.idea/misc.xml
+dependency-reduced-pom.xml
 *.iws
 *.iml
 *.ipr
@@ -36,3 +40,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Runtime Files ###
+logs
+config.json
