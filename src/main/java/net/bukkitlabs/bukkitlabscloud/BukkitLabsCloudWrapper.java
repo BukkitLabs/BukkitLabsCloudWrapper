@@ -2,10 +2,7 @@ package net.bukkitlabs.bukkitlabscloud;
 
 import net.bukkitlabs.bukkitlabscloud.packet.ServerInitializeEvent;
 import net.bukkitlabs.bukkitlabscloud.packet.ServerShutdownEvent;
-import net.bukkitlabs.bukkitlabscloud.server.listener.MinecraftServerCreateListener;
-import net.bukkitlabs.bukkitlabscloud.server.listener.MinecraftServerRestartListener;
-import net.bukkitlabs.bukkitlabscloud.server.listener.MinecraftServerStartListener;
-import net.bukkitlabs.bukkitlabscloud.server.listener.MinecraftServerStopListener;
+import net.bukkitlabs.bukkitlabscloud.server.listener.*;
 import net.bukkitlabs.bukkitlabscloudapi.internal.console.CommandHandler;
 import net.bukkitlabs.bukkitlabscloudapi.internal.console.Logger;
 import net.bukkitlabs.bukkitlabscloudapi.internal.event.Listener;
@@ -49,6 +46,7 @@ public class BukkitLabsCloudWrapper implements Listener {
         getPacketHandler().registerListener(new MinecraftServerStartListener());
         getPacketHandler().registerListener(new MinecraftServerStopListener());
         getPacketHandler().registerListener(new MinecraftServerRestartListener());
+        getPacketHandler().registerListener(new MinecraftServerDeleteListener());
     }
 
     @NotNull
@@ -87,5 +85,4 @@ public class BukkitLabsCloudWrapper implements Listener {
     private void onServerShutdown(final ServerShutdownEvent event) {
         getLogger().log(Logger.Level.INFO, "Goodbye...");
     }
-
 }

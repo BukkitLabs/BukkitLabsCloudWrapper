@@ -1,10 +1,7 @@
 package net.bukkitlabs.bukkitlabscloud.server;
 
 import net.bukkitlabs.bukkitlabscloud.BukkitLabsCloudWrapper;
-import net.bukkitlabs.bukkitlabscloud.packet.MinecraftServerCreateEvent;
-import net.bukkitlabs.bukkitlabscloud.packet.MinecraftServerRestartEvent;
-import net.bukkitlabs.bukkitlabscloud.packet.MinecraftServerStartEvent;
-import net.bukkitlabs.bukkitlabscloud.packet.MinecraftServerStopEvent;
+import net.bukkitlabs.bukkitlabscloud.packet.*;
 import net.bukkitlabs.bukkitlabscloudapi.internal.event.PacketCannotBeProcessedException;
 import org.jetbrains.annotations.NotNull;
 
@@ -46,6 +43,10 @@ public class MinecraftServerHandler extends MinecraftServer {
 
     @Override
     public void delete(@NotNull MinecraftServerFile file) {
-
+        try {
+            BukkitLabsCloudWrapper.getPacketHandler().call(new MinecraftServerDeleteEvent(file));
+        } catch (PacketCannotBeProcessedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

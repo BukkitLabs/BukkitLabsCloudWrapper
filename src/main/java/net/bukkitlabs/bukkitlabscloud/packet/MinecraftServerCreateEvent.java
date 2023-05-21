@@ -9,10 +9,10 @@ public class MinecraftServerCreateEvent extends Packet implements Cancelable {
 
     private MinecraftServer.Type type;
     private String version;
-    private final String defaultPath = "/wrapper/server/";
+    private final String defaultPath = "/wrapper/server/"; // path: /wrapper/server/[name]
     private String name;
     private String path;
-    private boolean canceled;
+    private boolean canceled=false;
 
     public MinecraftServerCreateEvent(@NotNull final MinecraftServer.Type type,@NotNull final String version,@NotNull final String name) {
         this.type = type;
@@ -54,7 +54,8 @@ public class MinecraftServerCreateEvent extends Packet implements Cancelable {
 
     @NotNull
     public String getPath() {
-        return defaultPath+name;
+        path=defaultPath+name;
+        return path;
     }
 
     @Override

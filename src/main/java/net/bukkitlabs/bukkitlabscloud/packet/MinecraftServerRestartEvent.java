@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class MinecraftServerRestartEvent extends Packet implements Cancelable {
     private MinecraftServerFile minecraftServerFile;
-    private boolean canceled;
+    private boolean canceled=false;
 
     public MinecraftServerRestartEvent(@NotNull final MinecraftServerFile minecraftServerFile) {
         this.minecraftServerFile = minecraftServerFile;
