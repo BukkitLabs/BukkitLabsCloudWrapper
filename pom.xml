@@ -52,8 +52,18 @@
             </plugin>
         </plugins>
     </build>
-
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
     <dependencies>
+        <dependency>
+            <groupId>com.github.BukkitLabs.BukkitLabsCloudAPI</groupId>
+            <artifactId>InternalAPI</artifactId>
+            <version>17e7e43c0d</version>
+        </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>

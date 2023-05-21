@@ -1,4 +1,4 @@
-package net.bukkitlabs.bukkitlabscloud.server.exeption;
+package net.bukkitlabs.bukkitlabscloud.exception;
 
 import org.jetbrains.annotations.NotNull;
 

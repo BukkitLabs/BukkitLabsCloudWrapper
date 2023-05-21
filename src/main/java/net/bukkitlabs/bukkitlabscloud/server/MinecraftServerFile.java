@@ -1,6 +1,6 @@
 package net.bukkitlabs.bukkitlabscloud.server;
 
-import net.bukkitlabs.bukkitlabscloud.server.exeption.InvalidMinecraftServerFileException;
+import net.bukkitlabs.bukkitlabscloud.exception.InvalidMinecraftServerFileException;
 import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.io.IOException;

@@ -1,38 +1,45 @@
 package net.bukkitlabs.bukkitlabscloud.server;
 
-import net.bukkitlabs.bukkitlabscloud.server.exeption.InvalidMinecraftServerTypeException;
-import net.bukkitlabs.bukkitlabscloud.service.ServiceHandler;
+import net.bukkitlabs.bukkitlabscloud.BukkitLabsCloudWrapper;
+import net.bukkitlabs.bukkitlabscloud.packet.MinecraftServerCreateEvent;
+import net.bukkitlabs.bukkitlabscloud.packet.MinecraftServerRestartEvent;
+import net.bukkitlabs.bukkitlabscloud.packet.MinecraftServerStartEvent;
+import net.bukkitlabs.bukkitlabscloud.packet.MinecraftServerStopEvent;
+import net.bukkitlabs.bukkitlabscloudapi.internal.event.PacketCannotBeProcessedException;
 import org.jetbrains.annotations.NotNull;
-import java.io.IOException;
 
 public class MinecraftServerHandler extends MinecraftServer {
     @Override
     public void start(@NotNull MinecraftServerFile file) {
-        final ServiceHandler handler = new ServiceHandler();
-        handler.startMinecraftServer(file);
+        try {
+            BukkitLabsCloudWrapper.getPacketHandler().call(new MinecraftServerStartEvent(file));
+        } catch (PacketCannotBeProcessedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void stop(@NotNull MinecraftServerFile file) {
-        final ServiceHandler handler = new ServiceHandler();
-        handler.stopMinecraftServer(file);
+        try {
+            BukkitLabsCloudWrapper.getPacketHandler().call(new MinecraftServerStopEvent(file));
+        } catch (PacketCannotBeProcessedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void restart(@NotNull MinecraftServerFile file) {
-        final ServiceHandler handler = new ServiceHandler();
-        handler.stopMinecraftServer(file);
-        handler.startMinecraftServer(file);
+        try {
+            BukkitLabsCloudWrapper.getPacketHandler().call(new MinecraftServerRestartEvent(file));
+        } catch (PacketCannotBeProcessedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void create(@NotNull final MinecraftServer.Type type, @NotNull final String version, @NotNull final String name) {
-        MinecraftServerFileDownloader downloader = new MinecraftServerFileDownloader();
-        downloader.setType(type);
-        downloader.setVersion(version);
-        downloader.setServerName(name);
         try {
-            downloader.download();
-        } catch (InvalidMinecraftServerTypeException | IOException e) {
+            BukkitLabsCloudWrapper.getPacketHandler().call(new MinecraftServerCreateEvent(type,version,name));
+        } catch (PacketCannotBeProcessedException e) {
             throw new RuntimeException(e);
         }
     }

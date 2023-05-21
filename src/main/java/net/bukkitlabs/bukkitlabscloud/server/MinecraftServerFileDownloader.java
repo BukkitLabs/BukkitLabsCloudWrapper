@@ -2,7 +2,7 @@ package net.bukkitlabs.bukkitlabscloud.server;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import net.bukkitlabs.bukkitlabscloud.server.exeption.InvalidMinecraftServerTypeException;
+import net.bukkitlabs.bukkitlabscloud.exception.InvalidMinecraftServerTypeException;
 import org.jetbrains.annotations.NotNull;
 import java.io.*;
 import java.net.URL;

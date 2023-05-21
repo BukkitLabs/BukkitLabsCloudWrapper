@@ -11,4 +11,3 @@ public abstract class Service implements Runnable {
         running = false;
     }
 }
-
